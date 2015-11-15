@@ -1,6 +1,18 @@
-var _name = 'sample';
+var params = getQueryStrings();
+var _name = params.slide || 'sample';
 var _currentPageIndex = 0;
 var _contents = [];
+
+function getQueryStrings() {
+    var url = window.location.search;
+    var items = url.slice(1).split('&');
+    var params = {}
+    items.forEach(function(item) {
+      var keyValue = item.split('=');
+      params[keyValue[0]] = keyValue[1];
+    });
+    return params;
+}
 
 $(function() {
   $(window).keyup(function(e) {
@@ -34,9 +46,12 @@ function next() {
 function showPage(index) {
   var c = _contents[index];
   $('.page').hide();
+  if (!c) c = {type:'notfound'};
   eval('setContent_'+c.type).call(this, c);
   $('#'+c.type).show();
 }
+
+function setContent_notfound(c) {}
 
 function setContent_title(c) {
   var $page = $('#title');

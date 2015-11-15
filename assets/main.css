@@ -16,7 +16,8 @@ body{
   color: white;
 }
 
-#title .title {
+#title .title,
+#notfound .title {
   text-align: center;
   position: relative;
   top: 50%;
