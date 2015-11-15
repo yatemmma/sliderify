@@ -1,4 +1,4 @@
-var _name = 'slide';
+var _name = 'sample';
 var _currentPageIndex = 0;
 var _contents = [];
 
