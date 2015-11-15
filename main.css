@@ -1,0 +1,23 @@
+@import url(vendor/sanitize.css);
+
+.page {
+  display: none;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #fcc800;
+  position:relative;
+}
+
+#title .title {
+  text-align: center;
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  font-size: 5em;
+  font-weight: bold;
+  color: white;
+}
