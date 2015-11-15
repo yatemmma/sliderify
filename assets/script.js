@@ -65,8 +65,4 @@ function setContent_introduction(c) {
   $page.find('.name').text(c.name);
   $page.find('.account').text(c.account);
   $page.find('.desc').text(c.desc);
-  // $page.find('.list').empty();
-  // for (i in c.list) {
-  //   $page.find('.list').append($('<li>').text(c.list[i]));
-  // }
 }

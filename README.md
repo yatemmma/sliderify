@@ -6,21 +6,16 @@ Make presentation slide. Simply.
 ## Instration
 
 ```
-$ git clone xxxx
-$ cd xxxx
-$ bundle install --path vendor/bundle
+$ git clone https://github.com/yatemmma/Sliderify.git
+$ cd Sliderify
 ```
 
 ## Usage
 
-```
-$ bundle exec rake init my_slide
-```
-
-Edit contents.rb
+Edit 'sample/contents.rb'
 
 ```
-$ bundle exec rake sliderify my_slide
+$ ruby sliderify/sliderify.rb
 $ open index.html
 ```
 
