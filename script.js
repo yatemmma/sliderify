@@ -57,3 +57,16 @@ function setContent_list(c) {
     $page.find('.list').append($('<li>').text(c.list[i]));
   }
 }
+
+function setContent_introduction(c) {
+  var $page = $('#introduction');
+  $page.find('.image').empty()
+                      .append($('<img>').attr({src:_name+'/'+c.image}));
+  $page.find('.name').text(c.name);
+  $page.find('.account').text(c.account);
+  $page.find('.desc').text(c.desc);
+  // $page.find('.list').empty();
+  // for (i in c.list) {
+  //   $page.find('.list').append($('<li>').text(c.list[i]));
+  // }
+}
