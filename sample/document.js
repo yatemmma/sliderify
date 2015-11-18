@@ -1,4 +1,4 @@
-define(function() {return function() {/***
+define(function() {return function() {/*
 { abc: 'xxx', ddd: 'eef'}
 
 ----
@@ -23,4 +23,4 @@ piyo piyo
 * ddd
 * eee
 
-***/}});
+*/}});

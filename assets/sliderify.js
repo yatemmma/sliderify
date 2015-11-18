@@ -46,7 +46,13 @@ $(function() {
   });
 
   require([_name+'/document'], function(document) {
-    var text = document.toString().match(/[^]*\/\*\*\*([^]*)\*\*\*\/\}$/)[1].replace(/^\n/, "");
+    var $link = $('<link>');
+    $link.attr('rel',"stylesheet");
+    $link.attr('media',"all");
+    $link.attr('href',_name+'/custom.css');
+    $("head").append($link);
+
+    var text = document.toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1].replace(/^\n/, "");
     console.log(markdown.parse(text));
     console.log(markdown.parse(text).toString());
     _contents = toJson(markdown.parse(text));
