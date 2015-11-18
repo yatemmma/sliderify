@@ -1,21 +1,20 @@
-Sliderify
+sliderify
 ====
 
-Make presentation slide. Simply.
+Make presentation slide. Easily.
 
 ## Instration
 
 ```
-$ git clone https://github.com/yatemmma/Sliderify.git
-$ cd Sliderify
+$ git clone https://github.com/yatemmma/sliderify.git
+$ cd sliderify
 ```
 
 ## Usage
 
-Edit 'sample/contents.rb'
+Edit 'sample/document.js'
 
 ```
-$ ruby sliderify/sliderify.rb
 $ open index.html
 ```
 
