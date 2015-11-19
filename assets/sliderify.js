@@ -1,24 +1,27 @@
 /*
- sliderify.js 0.0.1 Copyright (c) yatemmma.
+ Sliderify.js 0.0.1 Copyright (c) yatemmma.
  Available via the MIT license.
- see: https://github.com/yatemmma/sliderify for details
+ see: https://github.com/yatemmma/Sliderify for details
 */
 Function.prototype.heredoc = function() {
   return this.toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1].replace(/^\n/, '');
 };
 
-var Template = {
+var TEMPLATE = {
   header: function() {/*
-<div>
-  hello: <%= header %>
-</div>
-<a>xxx</a>
+<h1><%= header %></h1>
 */},
   header_para: function() {/*
-<div>
-  hello: <%= header %>
-</div>
-<a><%= para %></a>
+<h1><%= header %></h1>
+<p><%= para %></p>
+*/},
+  header_bulletlist: function() {/*
+<h1><%= header %></h1>
+<ul>
+  <% _.each(bulletlist, function(item) { %>
+    <li><%= item %></li>
+  <% }); %>
+</ul>
 */}
 };
 
@@ -73,12 +76,13 @@ Slide.prototype.next = function() {
 
 Slide.prototype.showPage = function() {
   var page = this.pages[this.currentIndex];
-
-  var compiled = _.template(page.template().heredoc());
+  var templateKey = page.templateKey();
+  var compiled = _.template(TEMPLATE[templateKey].heredoc());
   var $pageElement = $(compiled(page.data()));
 
+  $wrapper = $('<div class="page '+templateKey+'" id="page-'+this.currentIndex+'">');
   $("body").empty()
-           .append($pageElement);
+           .append($wrapper.append($pageElement));
 };
 
 function Page() {
@@ -90,7 +94,7 @@ Page.prototype.addItem = function(item) {
   if (item[0] == 'para' && item[1].charAt(0) == "{") {
     this.config = JSON.parse(item[1].toString());
   } else {
-    this.items.push(item); //TODO
+    this.items.push(item);
   }
 };
 
@@ -98,18 +102,34 @@ Page.prototype.isConfigOnly = function() {
   return (this.config && this.items.length == 0);
 };
 
-Page.prototype.template = function() {
-  return Template.aaa; //TODO
+Page.prototype.templateKey = function() {
+  var itemKeys = this.items.map(function(item) { return item[0];});
+  var enabledKeys = ['header', 'para', 'bulletlist'];
+  var templateKey = _.intersection(itemKeys, enabledKeys).join("_");
+  return templateKey;
 };
 
 Page.prototype.data = function() {
   var data = {};
   this.items.forEach(function(item) {
-    data[item[0]] = item[1];
+    switch (item[0]) {
+      case 'header':
+        data[item[0]] = item[2];
+        break;
+      case 'para':
+        data[item[0]] = item[1];
+        break;
+      case 'bulletlist':
+        data[item[0]] = item.slice(1).map(function(x) {
+          return x[1];
+        });
+        break;
+      default:
+        data[item[0]] = item[2];
+        break;
+    }
   });
-  // TODO: {header: "xxxx", para: ""}
-  console.log(data);
-  return data; //{name: this.items[0]}; //TODO
+  return data;
 };
 
 $(function() {
@@ -125,23 +145,22 @@ $(function() {
       slide.config = pages.shift().config;
     }
     slide.pages = pages;
-    console.log(slide.pages);
     slide.showPage();
   });
-});
 
-function dividePerPages(intermediate) {
-  var items = [];
-  var page = new Page();
-  intermediate.shift(); // igonre first item "markdown"
-  intermediate.forEach(function(content, index) {
-    if (content[0] == 'hr') {
-      items.push(page);
-      page = new Page();
-    } else {
-      page.addItem(content);
-    }
-  });
-  items.push(page);
-  return items;
-}
+  function dividePerPages(intermediate) {
+    var items = [];
+    var page = new Page();
+    intermediate.shift(); // igonre first item "markdown"
+    intermediate.forEach(function(content, index) {
+      if (content[0] == 'hr') {
+        items.push(page);
+        page = new Page();
+      } else {
+        page.addItem(content);
+      }
+    });
+    items.push(page);
+    return items;
+  }
+});

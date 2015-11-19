@@ -1,22 +1,15 @@
-sliderify
+Sliderify
 ====
 
 Make presentation slide. Easily.
 
-## Instration
-
-```
-$ git clone https://github.com/yatemmma/sliderify.git
-$ cd sliderify
-```
-
 ## Usage
 
-Edit 'sample/document.js'
+Copy sample your_slide_name
 
-```
-$ open index.html
-```
+Edit 'your_slide_name/text.js'
+
+Open file:///path/to/sliderify/index.html?slide=your_slide_name
 
 ## Reference
 

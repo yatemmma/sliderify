@@ -1,26 +1,19 @@
 define(function() {return function() {/*
-{ "abc":"xxx", "ddd":"eef" }
+
+# My Awesome Slide
 
 ----
 
-# hogehoge
+# Sliderify
 
-
-
-----
-
-## fugafuga
-
-hoge hoge
-fuga fuga
-piyo piyo
+This is Sliderify. This is Sliderify. This is Sliderify. This is Sliderify. This is Sliderify. This is Sliderify.
 
 ----
 
-### hogepiyo
+# Points
 
-* abc
-* ddd
-* eee
+* Simple
+* Easy
+* Beautiful
 
 */}});
