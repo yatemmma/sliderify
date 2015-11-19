@@ -16,4 +16,8 @@ This is Sliderify. This is Sliderify. This is Sliderify. This is Sliderify. This
 * Easy
 * Beautiful
 
+----
+
+Powered by Sliderify.
+
 */}});
