@@ -1,23 +1,15 @@
 Sliderify
 ====
 
-Make presentation slide. Simply.
-
-## Instration
-
-```
-$ git clone https://github.com/yatemmma/Sliderify.git
-$ cd Sliderify
-```
+Make presentation slide. Easily.
 
 ## Usage
 
-Edit 'sample/contents.rb'
+Copy sample your_slide_name
 
-```
-$ ruby sliderify/sliderify.rb
-$ open index.html
-```
+Edit 'your_slide_name/text.js'
+
+Open file:///path/to/sliderify/index.html?slide=your_slide_name
 
 ## Reference
 
