@@ -1,11 +1,11 @@
 define(function() {return function() {/*
-{ abc: 'xxx', ddd: 'eef'}
+{ "abc":"xxx", "ddd":"eef" }
 
 ----
 
 # hogehoge
 
-{ abc: 'xxx', ddd: 'eef'}
+
 
 ----
 

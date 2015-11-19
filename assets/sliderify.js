@@ -3,19 +3,22 @@
  Available via the MIT license.
  see: https://github.com/yatemmma/sliderify for details
 */
-
-var _slideConfig = null;
-
 Function.prototype.heredoc = function() {
-  return this.toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1].replace(/^\n/, "");
+  return this.toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1].replace(/^\n/, '');
 };
 
 var Template = {
-  aaa: function() {/*
+  header: function() {/*
 <div>
-  hello: <%= name %>
+  hello: <%= header %>
 </div>
 <a>xxx</a>
+*/},
+  header_para: function() {/*
+<div>
+  hello: <%= header %>
+</div>
+<a><%= para %></a>
 */}
 };
 
@@ -39,16 +42,6 @@ function Slide() {
                          .attr('href', this.target+'/custom.css');
   $("head").append($link);
 }
-
-Slide.prototype.setConfig = function(item) {
-  console.log("config!"); //TODO
-};
-
-Slide.prototype.setItems = function(items) {
-  this.pages = items.map(function(item) {
-  return item; //TODO
-  });
-};
 
 Slide.prototype.setKeyEvents = function() {
   var slide = this;
@@ -88,48 +81,52 @@ Slide.prototype.showPage = function() {
            .append($pageElement);
 };
 
-
 function Page() {
   this.config = null;
   this.items = [];
 }
-Page.prototype.setConfig = function(item) {
-  this.config = item; //TODO
-};
+
 Page.prototype.addItem = function(item) {
-  this.items.push(item); //TODO
+  if (item[0] == 'para' && item[1].charAt(0) == "{") {
+    this.config = JSON.parse(item[1].toString());
+  } else {
+    this.items.push(item); //TODO
+  }
 };
-Page.prototype.type = function() {
-  return this.items.map(function(item) {
-    return item[0];
-  }).join('_');
+
+Page.prototype.isConfigOnly = function() {
+  return (this.config && this.items.length == 0);
 };
+
 Page.prototype.template = function() {
   return Template.aaa; //TODO
 };
+
 Page.prototype.data = function() {
-  return {name: 'momotaro'}; //TODO
-};
-Page.prototype.isConfigOnly = function() {
-  return true; //TODO
+  var data = {};
+  this.items.forEach(function(item) {
+    data[item[0]] = item[1];
+  });
+  // TODO: {header: "xxxx", para: ""}
+  console.log(data);
+  return data; //{name: this.items[0]}; //TODO
 };
 
 $(function() {
   var slide = new Slide();
+  _slide = slide;
   slide.setKeyEvents();
 
   require([slide.target+'/text'], function(text) {
     var intermediate = markdown.parse(text.heredoc());
 
-    var items = dividePerPages(intermediate);
-    if (!slide.config && items[0].isConfigOnly()) {
-      slide.setConfig = items.shift();
+    var pages = dividePerPages(intermediate);
+    if (slide.config == null && pages[0].isConfigOnly()) {
+      slide.config = pages.shift().config;
     }
-    slide.setItems(items);
-    // console.log(intermediate);
+    slide.pages = pages;
     console.log(slide.pages);
     slide.showPage();
-
   });
 });
 
@@ -138,95 +135,13 @@ function dividePerPages(intermediate) {
   var page = new Page();
   intermediate.shift(); // igonre first item "markdown"
   intermediate.forEach(function(content, index) {
-    switch (content[0]) {
-      case 'hr':
-        items.push(page);
-
-        // if (!_slideConfig && page.items == 0) {
-        //   _slideConfig = page;
-        // } else {
-        //   codes.push(page);
-        // }
-        // page = new Page();
-        break;
-        console.log(content);
-      case 'para':
-        page.addItem(content);
-        // var text = content[1];
-        // if (text.charAt(0) == "{") {
-        //   page.setConfig(text);
-        // } else {
-        //   page.addItem(content);
-        // }
-        console.log(content);
-        break;
-      default:
-        page.addItem(content);
-        console.log(content);
-        break;
+    if (content[0] == 'hr') {
+      items.push(page);
+      page = new Page();
+    } else {
+      page.addItem(content);
     }
   });
   items.push(page);
   return items;
-
-  // var page = new Page();
-  // contents.shift(); // igonre first item "markdown"
-  // contents.forEach(function(content, index) {
-  //   switch (content[0]) {
-  //     case 'hr':
-  //       if (!_slideConfig && page.items == 0) {
-  //         _slideConfig = page;
-  //       } else {
-  //         codes.push(page);
-  //       }
-  //       page = new Page();
-  //       break;
-  //     case 'para':
-  //       var text = content[1];
-  //       if (text.charAt(0) == "{") {
-  //         page.setConfig(text);
-  //       } else {
-  //         page.addItem(content);
-  //       }
-  //       break;
-  //     default:
-  //       page.addItem(content);
-  //       console.log(content);
-  //       break;
-  //   }
-  // });
-  // codes.push(page);
-  // return codes;
-}
-
-function toJson(contents) {
-  var codes = [];
-  var page = new Page();
-  contents.shift(); // igonre first item "markdown"
-  contents.forEach(function(content, index) {
-    switch (content[0]) {
-      case 'hr':
-        if (!_slideConfig && page.items == 0) {
-          _slideConfig = page;
-        } else {
-          codes.push(page);
-        }
-        page = new Page();
-        break;
-      case 'para':
-        var text = content[1];
-        if (text.charAt(0) == "{") {
-          page.setConfig(text);
-        } else {
-          page.addItem(content);
-        }
-        break;
-      default:
-        page.addItem(content);
-        console.log(content);
-        break;
-    }
-  });
-  codes.push(page);
-  return codes;
 }
