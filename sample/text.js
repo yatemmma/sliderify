@@ -10,11 +10,22 @@ This is Sliderify. This is Sliderify. This is Sliderify. This is Sliderify. This
 
 ----
 
+Love Slide,
+Love Markdown
+
+----
+
 # Points
 
 * Simple
 * Easy
 * Beautiful
+* Markdown
+
+----
+
+![image](yatemmma.jpeg)
+Author: [@yatemmma](https://twitter.com/yatemmma)
 
 ----
 

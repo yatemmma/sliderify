@@ -20,6 +20,11 @@ a {
   color: white;
 }
 
+.page img {
+  height: 50%;
+  margin-bottom: 5%;
+}
+
 .header h1 {
   text-align: center;
   position: relative;

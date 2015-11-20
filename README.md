@@ -9,9 +9,21 @@ Make presentation slide. Easily.
 * Edit 'your_slide_name/text.js'
 * Open URL file:///path/to/sliderify/index.html?slide=your_slide_name
 
-## Reference
+text.js
+```
+define(function() {return function() {/*
 
-TBD
+# Your Awesome Slide
+
+----
+
+# Sliderify
+
+Love Slide,
+Love Markdown
+
+*/}}); // Do not remove first and last row.
+```
 
 ## License
 

@@ -121,11 +121,11 @@ Page.prototype.data = function() {
         data[item[0]] = item[2];
         break;
       case 'para':
-        data[item[0]] = joinLinkItem(item).slice(1).join('');
+        data[item[0]] = convert(item).slice(1).join('');
         break;
       case 'bulletlist':
         data[item[0]] = item.slice(1).map(function(x) {
-          return joinLinkItem(x)[1];
+          return convert(x)[1];
         });
         break;
       default:
@@ -135,32 +135,38 @@ Page.prototype.data = function() {
   });
   return data;
 
-  function joinLinkItem(items) {
+  function convert(items) {
     var items = items.map(function(item) {
-      if (toString.call(item) == "[object Array]" && item[0] == 'link') {
-        return '<a href="'+item[1].href+'" target="_blank">'+item[2]+'</a>';
+      if (toString.call(item) == "[object Array]") {
+        if (item[0] == 'link') {
+          return '<a href="'+item[1].href+'" target="_blank">'+item[2]+'</a>';
+        } else if (item[0] == 'img') {
+          console.log(item[1]);
+          return '<img src="'+_slide.target+'/'+item[1].href+'" alt="'+(item[1].image || '')+'">';
+        } else {
+          return item;
+        }
       }
-      return item;
+      return item.replace(/\n/g, '<br>');
     });
     return items;
   }
 };
 
 $(function() {
-  var slide = new Slide();
-  _slide = slide;
-  slide.setKeyEvents();
+  _slide = new Slide();
+  _slide.setKeyEvents();
 
-  require([slide.target+'/text'], function(text) {
+  require([_slide.target+'/text'], function(text) {
     var intermediate = markdown.parse(text.heredoc());
 
     console.log(intermediate);
     var pages = dividePerPages(intermediate);
-    if (slide.config == null && pages[0].isConfigOnly()) {
-      slide.config = pages.shift().config;
+    if (_slide.config == null && pages[0].isConfigOnly()) {
+      _slide.config = pages.shift().config;
     }
-    slide.pages = pages;
-    slide.showPage();
+    _slide.pages = pages;
+    _slide.showPage();
   });
 
   function dividePerPages(intermediate) {
