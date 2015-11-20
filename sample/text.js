@@ -18,6 +18,6 @@ This is Sliderify. This is Sliderify. This is Sliderify. This is Sliderify. This
 
 ----
 
-Powered by Sliderify.
+Powered by [Sliderify](https://github.com/yatemmma/Sliderify).
 
 */}});
