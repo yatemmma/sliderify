@@ -5,15 +5,25 @@ Make presentation slide. Easily.
 
 ## Usage
 
-Copy sample your_slide_name
+* Copy sample to your_slide_name
+* Edit 'your_slide_name/text.js'
+* Open URL file:///path/to/sliderify/index.html?slide=your_slide_name
 
-Edit 'your_slide_name/text.js'
+text.js
+```
+define(function() {return function() {/*
 
-Open file:///path/to/sliderify/index.html?slide=your_slide_name
+# Your Awesome Slide
 
-## Reference
+----
 
-TBD
+# Sliderify
+
+Love Slide,
+Love Markdown
+
+*/}}); // Do not remove first and last row.
+```
 
 ## License
 

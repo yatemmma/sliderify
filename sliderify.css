@@ -1,8 +1,13 @@
-@import url(../lib/sanitize.css);
+@import url(lib/sanitize.css);
 
 body {
   overflow-x: hidden;
   overflow-y: auto;
+}
+
+.page a {
+  text-decoration: underline;
+  color: white;
 }
 
 .page {
@@ -10,41 +15,65 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
-  background-color: lightgray;
+  background-color: #716246;
   position:relative;
   color: white;
 }
 
-.header h1 {
+.page img {
+  height: 50%;
+  /*margin-bottom: 5%;*/
+}
+
+.page h1 {
+  font-size: 5em;
+  font-weight: bold;
+}
+
+.page p {
+  font-size: 3em;
+}
+
+.page ul {
+  text-align: left !important;
+  left: 30%;
+}
+
+.page li {
+  font-size: 3em;
+}
+
+.single h1,
+.single h2,
+.single h3,
+.single h4,
+.single p {
   text-align: center;
   position: relative;
   top: 50%;
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
-  font-size: 8em;
-  font-weight: bold;
 }
 
-.header_para h1,
-.header_bulletlist h1 {
+.multiple h1,
+.multiple h2,
+.multiple h3,
+.multiple h4 {
   text-align: center;
   position: relative;
   top: 20%;
   -webkit-transform: translateY(-20%);
   -ms-transform: translateY(-20%);
   transform: translateY(-20%);
-  font-size: 6em;
-  font-weight: bold;
 }
 
-.header_para p,
-.header_bulletlist ul {
+.multiple p,
+.multiple ul {
   text-align: center;
   position: relative;
   top: 40%;
   -webkit-transform: translateY(-40%);
   -ms-transform: translateY(-40%);
   transform: translateY(-40%);
-  font-size: 3em;
 }
