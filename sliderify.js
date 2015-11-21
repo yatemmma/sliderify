@@ -29,6 +29,7 @@ function Sliderify() {
     return params;
   })();
 
+  console.log(queryStrings);
   this.target = queryStrings.slide || 'sample';
   this.currentIndex = location.hash.slice(1) || 0;
   this.pages = [];

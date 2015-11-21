@@ -25,8 +25,15 @@ body {
   /*margin-bottom: 5%;*/
 }
 
-.page h1 {
+.page h1,
+.page h2 {
   font-size: 5em;
+  font-weight: bold;
+}
+
+.page h3,
+.page h4 {
+  font-size: 4em;
   font-weight: bold;
 }
 

@@ -17,9 +17,9 @@ define(function() {return function() {/*
 
 ----
 
-# Sliderify
+# [Sliderify](https://github.com/yatemmma/Sliderify)
 
-Love Slide,
+Love Slide,    
 Love Markdown
 
 */}}); // Do not remove first and last row.
