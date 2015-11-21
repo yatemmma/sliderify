@@ -10,7 +10,7 @@ This is Sliderify. This is Sliderify. This is Sliderify. This is Sliderify. This
 
 ----
 
-Love Slide,
+Love Slide,    
 Love Markdown
 
 ----
@@ -24,7 +24,7 @@ Love Markdown
 
 ----
 
-![image](yatemmma.jpeg)
+![image](yatemmma.jpeg)    
 Author: [@yatemmma](https://twitter.com/yatemmma)
 
 ----
