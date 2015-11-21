@@ -25,6 +25,10 @@ Love Markdown
 */}}); // Do not remove first and last row.
 ```
 
+## Sample
+
+http://yatemmma.github.io/Sliderify/
+ 
 ## License
 
 Released under the [MIT License](http://www.opensource.org/licenses/MIT).
