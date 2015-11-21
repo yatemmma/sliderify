@@ -54,6 +54,13 @@ Sliderify.prototype.setKeyEvents = function() {
         break;
     }
   });
+  $(window).on('click', function(e) {
+    if ($('body').width()/2 - e.screenX > 0) {
+      slide.prev();
+    } else {
+      slide.next();
+    }
+  });
 };
 
 Sliderify.prototype.prev = function() {
