@@ -39,7 +39,6 @@ function Sliderify() {
                          .attr('href', this.target+'/custom.css');
   $("head").append($link);
 }
-
 Sliderify.prototype.setKeyEvents = function() {
   var slide = this;
   $(window).keyup(function(e) {
@@ -54,7 +53,8 @@ Sliderify.prototype.setKeyEvents = function() {
         break;
     }
   });
-  $(window).on('click', function(e) {
+  $('body').on('click', function(e) {
+    if (e.target.tagName == 'A') return;
     if ($('body').width()/2 - e.screenX > 0) {
       slide.prev();
     } else {
@@ -115,9 +115,14 @@ $(function() {
                  && content[1].charAt(0) == "{") {
         page.config = content[1];
       } else {
-        if (content[0] == 'para' && content[1][0] == 'img') {
-          content[1][1].href = _slider.target+'/'+content[1][1].href;
-        }
+        content.forEach(function(item, index) {
+          if (toString.call(item) == "[object String]") return;
+          if (item[0] == 'img') {
+            item[1].href = _slider.target+'/'+item[1].href;
+          } else if (item[0] == 'link') {
+            item[1].target = '_blank';
+          }
+        });
         var json = ['markdown'].concat([content]);
         page.tags.push(json[1][0]);
         var html = markdown.toHTML(json);
