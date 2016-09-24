@@ -2,3 +2,9 @@
   /* override */
   background-color: #bf794e;
 }
+
+#p8 {
+  background-image: url(background-image.jpg);
+  background-size: cover;
+  color: darkred;
+}
