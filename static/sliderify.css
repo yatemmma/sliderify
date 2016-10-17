@@ -1,0 +1,129 @@
+/**
+ * sliderify.css
+ */
+body {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.page {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #716246;
+  position:relative;
+  color: white;
+}
+
+.page .box {
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.page a {
+  text-decoration: underline;
+  color: white;
+}
+
+.page h1,
+.page h2,
+.page h3,
+.page h4,
+.page h5,
+.page p {
+  text-align: center;
+}
+
+.page h1 {
+  margin-bottom: 24px;
+}
+.page h2 {
+  margin-bottom: 16px;
+}
+.page h3 {
+  margin-bottom: 8px;
+}
+
+.page p {
+  font-size: 2em;
+}
+.page h1 {
+  font-size: 5em;
+}
+.page h2 {
+  font-size: 4em;
+}
+.page h3 {
+  font-size: 3em;
+}
+.page h4 {
+  font-size: 2em;
+}
+.page h5 {
+  font-size: 1em;
+}
+
+.page table {
+  margin: 15px auto;
+  color: inherit;
+}
+
+.page table th,
+.page table td {
+  border: 1px solid white;
+  padding: 16px 32px;
+  font-size: 1.2em;
+}
+
+.page ul {
+  margin: 15px 30%;
+  font-size: 2em;
+}
+
+.page pre {
+  margin: 15px 30%;
+}
+
+#progress {  
+  position: fixed !important;
+  position: absolute; 
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 8px;
+}
+
+#progress-page {
+  background-color: lightblue;
+  height: 50%;
+  width: 1%;
+}
+
+#progress-time {
+  background-color: brown;
+  height: 50%;
+  width: 1%;
+}
+
+@media screen {
+  .current {
+    display: block;
+  }
+
+  .hidden {
+    display: none;
+  }
+}
+
+@media print {
+  #progress {
+    display: none;
+  }
+}
