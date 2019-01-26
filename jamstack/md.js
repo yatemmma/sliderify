@@ -32,7 +32,7 @@ d=_=>{/*
 
 ----
 
-## AMP Stack
+## AMP Stack 
 
 ### Apache / MySQL / PHP
 
