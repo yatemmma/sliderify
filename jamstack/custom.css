@@ -1,0 +1,10 @@
+.page {
+  /* override */
+  background-color: #bf794e;
+}
+
+#p888 {
+  background-image: url(background-image.jpg);
+  background-size: cover;
+  color: darkred;
+}
